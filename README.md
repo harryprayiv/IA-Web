@@ -1,30 +1,29 @@
-# Halogen Template
+# IATSE 481 Availability List
 
 ### Quick Start
 ```sh
-git clone https://github.com/purescript-halogen/purescript-halogen-template.git halogen-project
-cd halogen-project
+git clone https://github.com/harryprayiv/IATSE-Web
+cd IATSE-Web
+git checkout ALPHA
 npm install
 npm run build
 npm run serve
 ```
 
+### Nix Instructions
+```sh
+git clone https://github.com/harryprayiv/IATSE-Web
+cd IATSE-Web
+git checkout ALPHA
+direnv allow
+dev
+```
+
 ### Introduction
 
-This is a template for starting a fresh project with the [Halogen](https://github.com/purescript-halogen/purescript-halogen) library for writing declarative, type-safe user interfaces.
 
-You can learn more about Halogen with these resources:
 
-- The [Halogen documentation](https://github.com/purescript-halogen/purescript-halogen/tree/master/docs), which includes a quick start guide and a concepts reference.
-- The [Learn Halogen](https://github.com/jordanmartinez/learn-halogen) learning repository.
-- The [Real World Halogen](https://github.com/thomashoneyman/purescript-halogen-realworld) application and guide. Note that the published article is written for the older halogen v4, but the code and comments cover the current halogen v5.
-- The [API documentation](https://pursuit.purescript.org/packages/purescript-halogen) on Pursuit
-
-You can chat with other Halogen users on the [PureScript Discourse](https://discourse.purescript.org), or join the [Functional Programming Slack](https://functionalprogramming.slack.com) ([invite link](https://fpchat-invite.herokuapp.com/)) in the `#purescript` and `#purescript-beginners` channels.
-
-If you notice any problems with the below setup instructions, or have suggestions on how to make the new-user experience any smoother, please create an issue or pull-request.
-
-Compatible with PureScript compiler 13.x
+Compatible with PureScript compiler 15.x
 
 ### Initial Setup
 
@@ -33,8 +32,8 @@ Compatible with PureScript compiler 13.x
 First, clone the repository and step into it:
 
 ```sh
-git clone https://github.com/purescript-halogen/purescript-halogen-template.git halogen-project
-cd halogen-project
+git clone git clone https://github.com/harryprayiv/IATSE-Web
+cd IATSE-Web
 ```
 
 Then, install the PureScript compiler, the [Spago](https://github.com/purescript/spago) package manager and build tool, and the [Parcel](https://github.com/parcel-bundler/parcel) bundler. You may either install PureScript tooling _globally_, to reduce duplicated `node_modules` across projects, or _locally_, so that each project uses specific versions of the tools.
