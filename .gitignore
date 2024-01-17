@@ -1,0 +1,13 @@
+.*
+!.gitignore
+!.github
+
+output
+generated-docs
+bower_components
+node_modules
+
+
+
+dist/
+prod/*

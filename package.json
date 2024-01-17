@@ -1,0 +1,31 @@
+{
+  "private": true,
+  "devDependencies": {
+    "parcel": "2.7.0",
+    "purescript": "0.15.10",
+    "spago": "0.20.9"
+  },
+  "scripts": {
+    "build": "spago build",
+    "test": "spago test",
+    "serve": "parcel serve dev/index.html images/*.png",
+    "build-prod": "mkdir -p prod && cp dev/index.html prod/ && rm -rf dist && spago bundle-app --to prod/index.js && parcel build prod/index.html"
+  },
+  "name": "purely-planning",
+  "description": "### Quick Start ```sh git clone https://github.com/purescript-halogen/purescript-halogen-template.git halogen-project cd halogen-project npm install npm run build npm run serve ```",
+  "version": "1.0.0",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "author": "",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/olaberglund/purely-planning.git"
+  },
+  "bugs": {
+    "url": "https://github.com/olaberglund/purely-planning/issues"
+  },
+  "homepage": "https://github.com/olaberglund/purely-planning#readme"
+}
