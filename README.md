@@ -1,5 +1,5 @@
 # IATSE 481 Availability List
-![current screenshot](https://github.com/harryprayiv/IATSE-Web/screenshot.png?raw=true)
+![current screenshot](https://github.com/harryprayiv/IATSE-Web/blob/main/screenshot.png?raw=true)
 
 
 ### Quick Start
