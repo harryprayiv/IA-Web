@@ -22,7 +22,6 @@ import Effect.Aff.Class (class MonadAff)
 import Effect.Class (liftEffect)
 import Effect.Console (log)
 import Foreign.Object as Obj
-import Form as F
 import Halogen as H
 import Halogen.HTML as HH
 import Halogen.HTML.Events (onClick)
@@ -36,25 +35,19 @@ import Web.HTML.Window (open)
 --new
 
 type State =
-  { currentlyPicked ∷ F.Option
-  , availability ∷ Availability
+  { availability ∷ Availability
   , datetime ∷ DateTime
   }
 
-data Action = HandlePicked F.Output | HandleDate C.Output | Reset | Export | SendData
+data Action = HandleDate C.Output | Reset | Export | SendData
 
 type Input = DateTime
 
-type Slots =
-  ( calendar ∷ ∀ q. H.Slot q C.Output Unit
-  , form ∷ ∀ q. H.Slot q F.Output Unit
-  )
+type Slots = ( calendar ∷ ∀ q. H.Slot q C.Output Unit )
 
 initialState ∷ Input → State
-initialState date = { currentlyPicked: Nothing, availability: Map.empty, datetime: date }
+initialState date = { availability: Map.empty, datetime: date }
 
--- component :: forall q o. H.Component q Input o Aff
--- component = H.mkComponent
 component ∷ ∀ q o. H.Component q Input o Aff
 component =
   H.mkComponent
@@ -68,7 +61,6 @@ render state =
   HH.div [ css "app" ]
     [ HH.div [ css "calendar-container" ]
         [ HH.slot (Proxy ∷ Proxy "calendar") unit C.calendar { now: state.datetime, availability: state.availability } HandleDate
-        , HH.slot (Proxy ∷ Proxy "form") unit F.form unit HandlePicked
         ]
     , HH.div [ css "buttons" ]
         [ HH.button [ onClick (\_ → Reset), css "button__reset" ] [ HH.text "Reset" ]
@@ -77,12 +69,12 @@ render state =
         ]
     ]
 
--- handleAction ∷ ∀ cs o m. MonadEffect m ⇒ Action → H.HalogenM State Action cs o m Unit
--- handleAction = case _ of
 handleAction :: forall o m. MonadAff m => Action -> H.HalogenM State Action Slots o m Unit
 handleAction action = case action of
-  HandlePicked option → do 
-    H.modify_ _ { currentlyPicked = option }
+  HandleDate date -> do
+    currentAvailability <- _.availability <$> H.get
+    let currentStatus = fromMaybe false (Map.lookup date currentAvailability)
+    H.modify_ \s -> s { availability = Map.insert date (not currentStatus) s.availability }
 
   Reset → do
     H.modify_ _ { availability = Map.empty }
@@ -106,16 +98,7 @@ handleAction action = case action of
         liftEffect $ log $ "Success: Data sent successfully."
 
     pure unit
-
-  HandleDate date → do
-    H.modify_ \s → case s.currentlyPicked of
-      Just _ → s { availability = Map.alter toggleAvailability date s.availability }
-      Nothing → s
-
   where
-    toggleAvailability ∷ Maybe Boolean → Maybe Boolean
-    toggleAvailability = Just <<< not <<< fromMaybe false
-
     availabilityToJson ∷ Availability → Json
     availabilityToJson av =
       let

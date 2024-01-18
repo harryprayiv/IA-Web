@@ -75,15 +75,15 @@ button {
 }
 
 .calendar__day--picked .calendar__day-checkmark {
-  display: block; /* Show checkmark when day is picked */
+  display: block; 
   color: green;
-  font-size: 1.2em;
+  font-size: 0.8rem;
   background-color: transparent;
 }
 
 .calendar__day--available {
   position: relative;
-  background-color: white;
+  background-color: rgb(25, 149, 52);
   /* Other styles... */
 }
 
@@ -97,10 +97,10 @@ button {
   /* Styles for the date text */
 }
 
-/* .calendar__day-checkmark {
+.calendar__day-checkmark {
   color: rgb(193, 210, 8); 
   font-size: 1.2em;
-} */
+}
 
 .calendar__day--picked::after {
   content: '✓';

@@ -2,7 +2,6 @@ module Form where
 
 import Prelude
 
-import Data.Maybe (Maybe(..))
 import Effect.Aff (Aff)
 import Halogen as H
 import Halogen.HTML as HH
@@ -10,9 +9,9 @@ import Halogen.HTML.Events as HE
 import Halogen.HTML.Properties as HP
 import Utils (css)
 
-type Option = Maybe Boolean
+type Option = Boolean
 
-type Options = Array Option
+type State = { picked ∷ Option }
 
 data Action = ChangeOption Option
 
@@ -20,13 +19,8 @@ type Output = Option
 
 type Input = Unit
 
-type State = { options ∷ Options, picked ∷ Option }
-
-initialOptions ∷ Options
-initialOptions = [ Just true, Just false ]
-
 initialState ∷ Input → State
-initialState _ = { options: initialOptions, picked: Nothing }
+initialState _ = { picked: false }
 
 form ∷ ∀ q. H.Component q Input Output Aff
 form = H.mkComponent
@@ -40,25 +34,18 @@ form = H.mkComponent
       H.modify_ _ { picked = option }
       H.raise option
 
-  renderOption ∷ Maybe Boolean → String
-  renderOption op = case op of
-    Just true → "Available"
-    Just false → "Unavailable"
-    Nothing → ""
-
   render state =
     HH.section [ css "availability-form" ]
       [ HH.section [ css "options" ]
-          ( state.options <#> \option →
-              HH.label_
-                [ HH.input
-                    [ HP.type_ HP.InputRadio
-                    , HP.name "radio"
-                    , HP.checked (state.picked == option)
-                    , HE.onChange (\_ → ChangeOption option)
-                    , css "radio__button"
-                    ]
-                , HH.text $ renderOption option
-                ]
-          )
+          [ HH.label_
+              [ HH.input
+                  [ HP.type_ HP.InputRadio
+                  , HP.name "radio"
+                  , HP.checked state.picked
+                  , HE.onChange (\_ → ChangeOption true)
+                  , css "radio__button"
+                  ]
+              , HH.text "Available"
+              ]
+          ]
       ]

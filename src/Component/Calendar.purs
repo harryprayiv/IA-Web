@@ -2,20 +2,21 @@ module Calendar where
 
 import Prelude
 
+import Data.Array (cons, filter, last, length, mapMaybe, mapWithIndex, replicate, singleton, splitAt)
 import Data.Date (Date, Month(..), Weekday(..), month, weekday, year)
 import Data.Date as Date
 import Data.DateTime (DateTime, date)
 import Data.DateTime as Time
+import Data.Enum (enumFromTo, fromEnum, pred, succ)
+import Data.Map (alter) as Map
+import Data.Map.Internal (empty, lookup) as Map
+import Data.Maybe (Maybe(..), fromMaybe)
 import Data.String as String
 import Halogen as H
 import Halogen.HTML as HH
 import Halogen.HTML.Events as HE
-import Data.Array (cons, filter, last, length, mapMaybe, mapWithIndex, replicate, singleton, splitAt)
-import Data.Enum (enumFromTo, fromEnum, pred, succ)
-import Data.Map.Internal (empty, lookup) as Map
-import Data.Maybe (Maybe(..), fromMaybe)
-import Utils (css)
 import Types (Availability)
+import Utils (css)
 
 type Matrix a = Array (Array a)
 
@@ -88,7 +89,7 @@ dataCell ∷ ∀ w. Availability → Padded Date → HH.HTML w Action
 dataCell availability pd =
   case pd of
     Data d →
-      case (Map.lookup d availability) of
+      case Map.lookup d availability of
         Just true → availableCell d
         _ → cell d
     Padding → HH.td [ css "calendar__day--empty" ] []
@@ -190,9 +191,15 @@ handleAction = case _ of
   Previous → do
     H.modify_ \s → s { currentDate = prevMonth s.currentDate }
   Pick d → do
-    H.raise d
+    H.modify_ \s → 
+      let newAvailability = Map.alter (toggleAvailability) d s.availability
+      in s { availability = newAvailability }
+    H.raise d  -- Raise the date to notify the parent component
   Receive i → do
     H.modify_ _ { availability = i.availability }
+  where
+    toggleAvailability ∷ Maybe Boolean → Maybe Boolean
+    toggleAvailability = Just <<< not <<< fromMaybe false
 
 week ∷ Date → Int
 week d = if nbrMondaysUpUntilDate == 0 then week lastDateOfLastYear else nbrMondaysUpUntilDate
