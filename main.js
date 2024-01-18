@@ -289,11 +289,11 @@ var bottomNumber = Number.NEGATIVE_INFINITY;
 
 // output/Data.Ord/foreign.js
 var unsafeCompareImpl = function(lt) {
-  return function(eq8) {
+  return function(eq7) {
     return function(gt) {
       return function(x) {
         return function(y) {
-          return x < y ? lt : x === y ? eq8 : gt;
+          return x < y ? lt : x === y ? eq7 : gt;
         };
       };
     };
@@ -309,7 +309,6 @@ var refEq = function(r1) {
     return r1 === r2;
   };
 };
-var eqBooleanImpl = refEq;
 var eqIntImpl = refEq;
 var eqCharImpl = refEq;
 var eqStringImpl = refEq;
@@ -330,9 +329,6 @@ var eqInt = {
 };
 var eqChar = {
   eq: eqCharImpl
-};
-var eqBoolean = {
-  eq: eqBooleanImpl
 };
 var eq = function(dict) {
   return dict.eq;
@@ -597,7 +593,7 @@ var fromJust = function() {
   };
 };
 var eqMaybe = function(dictEq) {
-  var eq8 = eq(dictEq);
+  var eq7 = eq(dictEq);
   return {
     eq: function(x) {
       return function(y) {
@@ -606,7 +602,7 @@ var eqMaybe = function(dictEq) {
         }
         ;
         if (x instanceof Just && y instanceof Just) {
-          return eq8(x.value0)(y.value0);
+          return eq7(x.value0)(y.value0);
         }
         ;
         return false;
@@ -863,14 +859,14 @@ var mempty = function(dict) {
 };
 
 // output/Effect/index.js
-var $runtime_lazy = function(name17, moduleName, init3) {
+var $runtime_lazy = function(name16, moduleName, init3) {
   var state3 = 0;
   var val;
   return function(lineNumber) {
     if (state3 === 2)
       return val;
     if (state3 === 1)
-      throw new ReferenceError(name17 + " was needed before it finished initializing (module " + moduleName + ", line " + lineNumber + ")", moduleName, lineNumber);
+      throw new ReferenceError(name16 + " was needed before it finished initializing (module " + moduleName + ", line " + lineNumber + ")", moduleName, lineNumber);
     state3 = 1;
     val = init3();
     state3 = 2;
@@ -2134,13 +2130,13 @@ var fst = function(v) {
   return v.value0;
 };
 var eqTuple = function(dictEq) {
-  var eq8 = eq(dictEq);
+  var eq7 = eq(dictEq);
   return function(dictEq1) {
     var eq13 = eq(dictEq1);
     return {
       eq: function(x) {
         return function(y) {
-          return eq8(x.value0)(y.value0) && eq13(x.value1)(y.value1);
+          return eq7(x.value0)(y.value0) && eq13(x.value1)(y.value1);
         };
       }
     };
@@ -2656,14 +2652,14 @@ var unsafeCrashWith = function(msg) {
 };
 
 // output/Effect.Aff/index.js
-var $runtime_lazy2 = function(name17, moduleName, init3) {
+var $runtime_lazy2 = function(name16, moduleName, init3) {
   var state3 = 0;
   var val;
   return function(lineNumber) {
     if (state3 === 2)
       return val;
     if (state3 === 1)
-      throw new ReferenceError(name17 + " was needed before it finished initializing (module " + moduleName + ", line " + lineNumber + ")", moduleName, lineNumber);
+      throw new ReferenceError(name16 + " was needed before it finished initializing (module " + moduleName + ", line " + lineNumber + ")", moduleName, lineNumber);
     state3 = 1;
     val = init3();
     state3 = 2;
@@ -3160,14 +3156,14 @@ var boundedEnumChar = /* @__PURE__ */ function() {
 }();
 
 // output/Data.Date.Component/index.js
-var $runtime_lazy3 = function(name17, moduleName, init3) {
+var $runtime_lazy3 = function(name16, moduleName, init3) {
   var state3 = 0;
   var val;
   return function(lineNumber) {
     if (state3 === 2)
       return val;
     if (state3 === 1)
-      throw new ReferenceError(name17 + " was needed before it finished initializing (module " + moduleName + ", line " + lineNumber + ")", moduleName, lineNumber);
+      throw new ReferenceError(name16 + " was needed before it finished initializing (module " + moduleName + ", line " + lineNumber + ")", moduleName, lineNumber);
     state3 = 1;
     val = init3();
     state3 = 2;
@@ -4425,10 +4421,10 @@ var map7 = /* @__PURE__ */ map(functorEffect);
 var nowDateTime = /* @__PURE__ */ map7(toDateTime)(now);
 
 // output/Web.DOM.ParentNode/foreign.js
-var getEffProp = function(name17) {
+var getEffProp = function(name16) {
   return function(node) {
     return function() {
-      return node[name17];
+      return node[name16];
     };
   };
 };
@@ -4601,11 +4597,11 @@ function document(window2) {
   };
 }
 function _open(url) {
-  return function(name17) {
+  return function(name16) {
     return function(features) {
       return function(window2) {
         return function() {
-          return window2.open(url, name17, features);
+          return window2.open(url, name16, features);
         };
       };
     };
@@ -4616,10 +4612,10 @@ function _open(url) {
 var map10 = /* @__PURE__ */ map(functorEffect);
 var toEventTarget = unsafeCoerce2;
 var open = function(url$prime) {
-  return function(name17) {
+  return function(name16) {
     return function(features) {
       return function(window2) {
-        return map10(toMaybe)(_open(url$prime)(name17)(features)(window2));
+        return map10(toMaybe)(_open(url$prime)(name16)(features)(window2));
       };
     };
   };
@@ -4627,7 +4623,6 @@ var open = function(url$prime) {
 
 // output/Web.HTML.Event.EventTypes/index.js
 var domcontentloaded = "DOMContentLoaded";
-var change = "change";
 
 // output/Halogen.Aff.Util/index.js
 var bind3 = /* @__PURE__ */ bind(bindAff);
@@ -5988,253 +5983,6 @@ var joinWith = function(s) {
   };
 };
 
-// output/DOM.HTML.Indexed.InputType/index.js
-var InputButton = /* @__PURE__ */ function() {
-  function InputButton2() {
-  }
-  ;
-  InputButton2.value = new InputButton2();
-  return InputButton2;
-}();
-var InputCheckbox = /* @__PURE__ */ function() {
-  function InputCheckbox2() {
-  }
-  ;
-  InputCheckbox2.value = new InputCheckbox2();
-  return InputCheckbox2;
-}();
-var InputColor = /* @__PURE__ */ function() {
-  function InputColor2() {
-  }
-  ;
-  InputColor2.value = new InputColor2();
-  return InputColor2;
-}();
-var InputDate = /* @__PURE__ */ function() {
-  function InputDate2() {
-  }
-  ;
-  InputDate2.value = new InputDate2();
-  return InputDate2;
-}();
-var InputDatetimeLocal = /* @__PURE__ */ function() {
-  function InputDatetimeLocal2() {
-  }
-  ;
-  InputDatetimeLocal2.value = new InputDatetimeLocal2();
-  return InputDatetimeLocal2;
-}();
-var InputEmail = /* @__PURE__ */ function() {
-  function InputEmail2() {
-  }
-  ;
-  InputEmail2.value = new InputEmail2();
-  return InputEmail2;
-}();
-var InputFile = /* @__PURE__ */ function() {
-  function InputFile2() {
-  }
-  ;
-  InputFile2.value = new InputFile2();
-  return InputFile2;
-}();
-var InputHidden = /* @__PURE__ */ function() {
-  function InputHidden2() {
-  }
-  ;
-  InputHidden2.value = new InputHidden2();
-  return InputHidden2;
-}();
-var InputImage = /* @__PURE__ */ function() {
-  function InputImage2() {
-  }
-  ;
-  InputImage2.value = new InputImage2();
-  return InputImage2;
-}();
-var InputMonth = /* @__PURE__ */ function() {
-  function InputMonth2() {
-  }
-  ;
-  InputMonth2.value = new InputMonth2();
-  return InputMonth2;
-}();
-var InputNumber = /* @__PURE__ */ function() {
-  function InputNumber2() {
-  }
-  ;
-  InputNumber2.value = new InputNumber2();
-  return InputNumber2;
-}();
-var InputPassword = /* @__PURE__ */ function() {
-  function InputPassword2() {
-  }
-  ;
-  InputPassword2.value = new InputPassword2();
-  return InputPassword2;
-}();
-var InputRadio = /* @__PURE__ */ function() {
-  function InputRadio2() {
-  }
-  ;
-  InputRadio2.value = new InputRadio2();
-  return InputRadio2;
-}();
-var InputRange = /* @__PURE__ */ function() {
-  function InputRange2() {
-  }
-  ;
-  InputRange2.value = new InputRange2();
-  return InputRange2;
-}();
-var InputReset = /* @__PURE__ */ function() {
-  function InputReset2() {
-  }
-  ;
-  InputReset2.value = new InputReset2();
-  return InputReset2;
-}();
-var InputSearch = /* @__PURE__ */ function() {
-  function InputSearch2() {
-  }
-  ;
-  InputSearch2.value = new InputSearch2();
-  return InputSearch2;
-}();
-var InputSubmit = /* @__PURE__ */ function() {
-  function InputSubmit2() {
-  }
-  ;
-  InputSubmit2.value = new InputSubmit2();
-  return InputSubmit2;
-}();
-var InputTel = /* @__PURE__ */ function() {
-  function InputTel2() {
-  }
-  ;
-  InputTel2.value = new InputTel2();
-  return InputTel2;
-}();
-var InputText = /* @__PURE__ */ function() {
-  function InputText2() {
-  }
-  ;
-  InputText2.value = new InputText2();
-  return InputText2;
-}();
-var InputTime = /* @__PURE__ */ function() {
-  function InputTime2() {
-  }
-  ;
-  InputTime2.value = new InputTime2();
-  return InputTime2;
-}();
-var InputUrl = /* @__PURE__ */ function() {
-  function InputUrl2() {
-  }
-  ;
-  InputUrl2.value = new InputUrl2();
-  return InputUrl2;
-}();
-var InputWeek = /* @__PURE__ */ function() {
-  function InputWeek2() {
-  }
-  ;
-  InputWeek2.value = new InputWeek2();
-  return InputWeek2;
-}();
-var renderInputType = function(v) {
-  if (v instanceof InputButton) {
-    return "button";
-  }
-  ;
-  if (v instanceof InputCheckbox) {
-    return "checkbox";
-  }
-  ;
-  if (v instanceof InputColor) {
-    return "color";
-  }
-  ;
-  if (v instanceof InputDate) {
-    return "date";
-  }
-  ;
-  if (v instanceof InputDatetimeLocal) {
-    return "datetime-local";
-  }
-  ;
-  if (v instanceof InputEmail) {
-    return "email";
-  }
-  ;
-  if (v instanceof InputFile) {
-    return "file";
-  }
-  ;
-  if (v instanceof InputHidden) {
-    return "hidden";
-  }
-  ;
-  if (v instanceof InputImage) {
-    return "image";
-  }
-  ;
-  if (v instanceof InputMonth) {
-    return "month";
-  }
-  ;
-  if (v instanceof InputNumber) {
-    return "number";
-  }
-  ;
-  if (v instanceof InputPassword) {
-    return "password";
-  }
-  ;
-  if (v instanceof InputRadio) {
-    return "radio";
-  }
-  ;
-  if (v instanceof InputRange) {
-    return "range";
-  }
-  ;
-  if (v instanceof InputReset) {
-    return "reset";
-  }
-  ;
-  if (v instanceof InputSearch) {
-    return "search";
-  }
-  ;
-  if (v instanceof InputSubmit) {
-    return "submit";
-  }
-  ;
-  if (v instanceof InputTel) {
-    return "tel";
-  }
-  ;
-  if (v instanceof InputText) {
-    return "text";
-  }
-  ;
-  if (v instanceof InputTime) {
-    return "time";
-  }
-  ;
-  if (v instanceof InputUrl) {
-    return "url";
-  }
-  ;
-  if (v instanceof InputWeek) {
-    return "week";
-  }
-  ;
-  throw new Error("Failed pattern match at DOM.HTML.Indexed.InputType (line 33, column 19 - line 55, column 22): " + [v.constructor.name]);
-};
-
 // output/Halogen.Query.Input/index.js
 var RefUpdate = /* @__PURE__ */ function() {
   function RefUpdate2(value0, value1) {
@@ -6817,11 +6565,11 @@ function createTextNode(s, doc) {
 function setTextContent(s, n) {
   n.textContent = s;
 }
-function createElement(ns, name17, doc) {
+function createElement(ns, name16, doc) {
   if (ns != null) {
-    return doc.createElementNS(ns, name17);
+    return doc.createElementNS(ns, name16);
   } else {
-    return doc.createElement(name17);
+    return doc.createElement(name16);
   }
 }
 function insertChildIx(i2, a2, b2) {
@@ -6889,9 +6637,9 @@ var pokeMutMap = unsafeSetAny;
 var newMutMap = newImpl;
 
 // output/Web.DOM.Element/foreign.js
-var getProp = function(name17) {
+var getProp = function(name16) {
   return function(doctype) {
-    return doctype[name17];
+    return doctype[name16];
   };
 };
 var _namespaceURI = getProp("namespaceURI");
@@ -6903,14 +6651,14 @@ var tagName = getProp("tagName");
 var toNode2 = unsafeCoerce2;
 
 // output/Halogen.VDom.DOM/index.js
-var $runtime_lazy4 = function(name17, moduleName, init3) {
+var $runtime_lazy4 = function(name16, moduleName, init3) {
   var state3 = 0;
   var val;
   return function(lineNumber) {
     if (state3 === 2)
       return val;
     if (state3 === 1)
-      throw new ReferenceError(name17 + " was needed before it finished initializing (module " + moduleName + ", line " + lineNumber + ")", moduleName, lineNumber);
+      throw new ReferenceError(name16 + " was needed before it finished initializing (module " + moduleName + ", line " + lineNumber + ")", moduleName, lineNumber);
     state3 = 1;
     val = init3();
     state3 = 2;
@@ -7357,14 +7105,14 @@ var insert3 = function(k) {
 };
 
 // output/Halogen.VDom.DOM.Prop/index.js
-var $runtime_lazy5 = function(name17, moduleName, init3) {
+var $runtime_lazy5 = function(name16, moduleName, init3) {
   var state3 = 0;
   var val;
   return function(lineNumber) {
     if (state3 === 2)
       return val;
     if (state3 === 1)
-      throw new ReferenceError(name17 + " was needed before it finished initializing (module " + moduleName + ", line " + lineNumber + ")", moduleName, lineNumber);
+      throw new ReferenceError(name16 + " was needed before it finished initializing (module " + moduleName + ", line " + lineNumber + ")", moduleName, lineNumber);
     state3 = 1;
     val = init3();
     state3 = 2;
@@ -7490,7 +7238,6 @@ var propToStrKey = function(v) {
   throw new Error("Failed pattern match at Halogen.VDom.DOM.Prop (line 182, column 16 - line 187, column 16): " + [v.constructor.name]);
 };
 var propFromString = unsafeCoerce2;
-var propFromBoolean = unsafeCoerce2;
 var buildProp = function(emit) {
   return function(el) {
     var removeProp = function(prevEvents) {
@@ -7665,22 +7412,14 @@ var prop = function(dictIsProp) {
 var isPropString = {
   toPropValue: propFromString
 };
-var isPropInputType = {
-  toPropValue: function($45) {
-    return propFromString(renderInputType($45));
-  }
-};
-var isPropBoolean = {
-  toPropValue: propFromBoolean
-};
 var handler = /* @__PURE__ */ function() {
   return Handler.create;
 }();
 var element = function(ns) {
-  return function(name17) {
+  return function(name16) {
     return function(props) {
       return function(children2) {
-        return new Elem(ns, name17, props, children2);
+        return new Elem(ns, name16, props, children2);
       };
     };
   };
@@ -8097,14 +7836,14 @@ var snoc4 = function(cat) {
 };
 
 // output/Control.Monad.Free/index.js
-var $runtime_lazy6 = function(name17, moduleName, init3) {
+var $runtime_lazy6 = function(name16, moduleName, init3) {
   var state3 = 0;
   var val;
   return function(lineNumber) {
     if (state3 === 2)
       return val;
     if (state3 === 1)
-      throw new ReferenceError(name17 + " was needed before it finished initializing (module " + moduleName + ", line " + lineNumber + ")", moduleName, lineNumber);
+      throw new ReferenceError(name16 + " was needed before it finished initializing (module " + moduleName + ", line " + lineNumber + ")", moduleName, lineNumber);
     state3 = 1;
     val = init3();
     state3 = 2;
@@ -8582,14 +8321,14 @@ var Query = /* @__PURE__ */ function() {
 }();
 
 // output/Halogen.VDom.Thunk/index.js
-var $runtime_lazy7 = function(name17, moduleName, init3) {
+var $runtime_lazy7 = function(name16, moduleName, init3) {
   var state3 = 0;
   var val;
   return function(lineNumber) {
     if (state3 === 2)
       return val;
     if (state3 === 1)
-      throw new ReferenceError(name17 + " was needed before it finished initializing (module " + moduleName + ", line " + lineNumber + ")", moduleName, lineNumber);
+      throw new ReferenceError(name16 + " was needed before it finished initializing (module " + moduleName + ", line " + lineNumber + ")", moduleName, lineNumber);
     state3 = 1;
     val = init3();
     state3 = 2;
@@ -8739,11 +8478,6 @@ var componentSlot = function() {
 var element2 = /* @__PURE__ */ function() {
   return element(Nothing.value);
 }();
-var input = function(props) {
-  return element2("input")(props)([]);
-};
-var label4 = /* @__PURE__ */ element2("label");
-var label_ = /* @__PURE__ */ label4([]);
 var link2 = function(props) {
   return element2("link")(props)([]);
 };
@@ -8765,13 +8499,8 @@ var unwrap2 = /* @__PURE__ */ unwrap();
 var prop2 = function(dictIsProp) {
   return prop(dictIsProp);
 };
-var prop1 = /* @__PURE__ */ prop2(isPropBoolean);
 var prop22 = /* @__PURE__ */ prop2(isPropString);
 var rel4 = /* @__PURE__ */ prop22("rel");
-var type_17 = function(dictIsProp) {
-  return prop2(dictIsProp)("type");
-};
-var name15 = /* @__PURE__ */ prop22("name");
 var href4 = /* @__PURE__ */ prop22("href");
 var class_ = /* @__PURE__ */ function() {
   var $36 = prop22("className");
@@ -8779,7 +8508,6 @@ var class_ = /* @__PURE__ */ function() {
     return $36(unwrap2($37));
   };
 }();
-var checked2 = /* @__PURE__ */ prop1("checked");
 var attr2 = /* @__PURE__ */ function() {
   return attr(Nothing.value);
 }();
@@ -9503,10 +9231,10 @@ var runUI = function(renderSpec2) {
 };
 
 // output/Web.DOM.Node/foreign.js
-var getEffProp2 = function(name17) {
+var getEffProp2 = function(name16) {
   return function(node) {
     return function() {
-      return node[name17];
+      return node[name16];
     };
   };
 };
@@ -9561,14 +9289,14 @@ var nextSibling = /* @__PURE__ */ function() {
 }();
 
 // output/Halogen.VDom.Driver/index.js
-var $runtime_lazy8 = function(name17, moduleName, init3) {
+var $runtime_lazy8 = function(name16, moduleName, init3) {
   var state3 = 0;
   var val;
   return function(lineNumber) {
     if (state3 === 2)
       return val;
     if (state3 === 1)
-      throw new ReferenceError(name17 + " was needed before it finished initializing (module " + moduleName + ", line " + lineNumber + ")", moduleName, lineNumber);
+      throw new ReferenceError(name16 + " was needed before it finished initializing (module " + moduleName + ", line " + lineNumber + ")", moduleName, lineNumber);
     state3 = 1;
     val = init3();
     state3 = 2;
@@ -10042,7 +9770,7 @@ var value12 = function(v) {
   ;
   throw new Error("Failed pattern match at Affjax.RequestHeader (line 26, column 1 - line 26, column 33): " + [v.constructor.name]);
 };
-var name16 = function(v) {
+var name15 = function(v) {
   if (v instanceof Accept) {
     return "Accept";
   }
@@ -10514,7 +10242,7 @@ var request2 = function(driver2) {
     };
     var addHeader = function(mh) {
       return function(hs) {
-        if (mh instanceof Just && !any2(on(eq5)(name16)(mh.value0))(hs)) {
+        if (mh instanceof Just && !any2(on(eq5)(name15)(mh.value0))(hs)) {
           return snoc(hs)(mh.value0);
         }
         ;
@@ -10530,7 +10258,7 @@ var request2 = function(driver2) {
         url: req.url,
         headers: map110(function(h) {
           return {
-            field: name16(h),
+            field: name15(h),
             value: value12(h)
           };
         })(headers(req.content)),
@@ -10754,7 +10482,6 @@ var handler2 = function(et) {
     });
   };
 };
-var onChange = /* @__PURE__ */ handler2(change);
 var onClick = /* @__PURE__ */ function() {
   var $15 = handler2(click2);
   return function($16) {
@@ -10784,6 +10511,8 @@ var succ12 = /* @__PURE__ */ succ(enumYear);
 var pred3 = /* @__PURE__ */ pred(enumMonth);
 var pred12 = /* @__PURE__ */ pred(enumYear);
 var modify_3 = /* @__PURE__ */ modify_2(monadStateHalogenM);
+var discard5 = /* @__PURE__ */ discard(discardUnit)(bindHalogenM);
+var alter3 = /* @__PURE__ */ alter(ordDate);
 var top12 = /* @__PURE__ */ top(boundedMonth);
 var eq6 = /* @__PURE__ */ eq(eqWeekday);
 var fromEnum12 = /* @__PURE__ */ fromEnum(boundedEnumWeekday);
@@ -10845,13 +10574,13 @@ var Receive2 = /* @__PURE__ */ function() {
 var weekdays = /* @__PURE__ */ enumFromTo(enumWeekday)(unfoldable1Array)(/* @__PURE__ */ bottom(boundedWeekday))(/* @__PURE__ */ top(boundedWeekday));
 var tableHeads = /* @__PURE__ */ function() {
   var th2 = th([css("calendar__head")]);
-  return cons2(th2([]))(map24(function($85) {
-    return th2(singleton4(text5($85)));
+  return cons2(th2([]))(map24(function($93) {
+    return th2(singleton4(text5($93)));
   })(map24(function() {
-    var $86 = take3(3);
-    var $87 = show(showWeekday);
-    return function($88) {
-      return $86($87($88));
+    var $94 = take3(3);
+    var $95 = show(showWeekday);
+    return function($96) {
+      return $94($95($96));
     };
   }())(weekdays)));
 }();
@@ -10898,7 +10627,7 @@ var dataCell = function(availability) {
       return td([css("calendar__day--empty")])([]);
     }
     ;
-    throw new Error("Failed pattern match at Calendar (line 89, column 3 - line 94, column 54): " + [pd.constructor.name]);
+    throw new Error("Failed pattern match at Calendar (line 90, column 3 - line 95, column 54): " + [pd.constructor.name]);
   };
 };
 var chunks = function(v) {
@@ -10923,15 +10652,15 @@ var datesOfMonth = function(date2) {
 var dataRow = function(d) {
   return function(ws) {
     return bind6(datesOfMonth(d))(function() {
-      var $91 = dataCell(ws);
-      return function($92) {
-        return pure11($91(Data.create($92)));
+      var $99 = dataCell(ws);
+      return function($100) {
+        return pure11($99(Data.create($100)));
       };
     }());
   };
 };
-var firstWeekDay = function($93) {
-  return weekday(firstDateOfMonth($93));
+var firstWeekDay = function($101) {
+  return weekday(firstDateOfMonth($101));
 };
 var nextMonth = function(d) {
   var v = succ3(month(d));
@@ -10943,7 +10672,7 @@ var nextMonth = function(d) {
     return canonicalDate(fromMaybe(year(d))(succ12(year(d))))(January.value)(bottom2);
   }
   ;
-  throw new Error("Failed pattern match at Calendar (line 168, column 15 - line 170, column 83): " + [v.constructor.name]);
+  throw new Error("Failed pattern match at Calendar (line 169, column 15 - line 171, column 83): " + [v.constructor.name]);
 };
 var prevMonth = function(d) {
   var v = pred3(month(d));
@@ -10955,60 +10684,83 @@ var prevMonth = function(d) {
     return canonicalDate(fromMaybe(year(d))(pred12(year(d))))(December.value)(bottom2);
   }
   ;
-  throw new Error("Failed pattern match at Calendar (line 173, column 15 - line 175, column 84): " + [v.constructor.name]);
+  throw new Error("Failed pattern match at Calendar (line 174, column 15 - line 176, column 84): " + [v.constructor.name]);
 };
-var handleAction = function(v) {
-  if (v instanceof Next) {
-    return modify_3(function(s) {
-      var $71 = {};
-      for (var $72 in s) {
-        if ({}.hasOwnProperty.call(s, $72)) {
-          $71[$72] = s[$72];
+var handleAction = /* @__PURE__ */ function() {
+  var toggleAvailability = function() {
+    var $102 = not(heytingAlgebraBoolean);
+    var $103 = fromMaybe(false);
+    return function($104) {
+      return Just.create($102($103($104)));
+    };
+  }();
+  return function(v) {
+    if (v instanceof Next) {
+      return modify_3(function(s) {
+        var $76 = {};
+        for (var $77 in s) {
+          if ({}.hasOwnProperty.call(s, $77)) {
+            $76[$77] = s[$77];
+          }
+          ;
         }
         ;
-      }
-      ;
-      $71.currentDate = nextMonth(s.currentDate);
-      return $71;
-    });
-  }
-  ;
-  if (v instanceof Previous) {
-    return modify_3(function(s) {
-      var $74 = {};
-      for (var $75 in s) {
-        if ({}.hasOwnProperty.call(s, $75)) {
-          $74[$75] = s[$75];
+        $76.currentDate = nextMonth(s.currentDate);
+        return $76;
+      });
+    }
+    ;
+    if (v instanceof Previous) {
+      return modify_3(function(s) {
+        var $79 = {};
+        for (var $80 in s) {
+          if ({}.hasOwnProperty.call(s, $80)) {
+            $79[$80] = s[$80];
+          }
+          ;
         }
         ;
-      }
-      ;
-      $74.currentDate = prevMonth(s.currentDate);
-      return $74;
-    });
-  }
-  ;
-  if (v instanceof Pick) {
-    return raise(v.value0);
-  }
-  ;
-  if (v instanceof Receive2) {
-    return modify_3(function(v1) {
-      var $78 = {};
-      for (var $79 in v1) {
-        if ({}.hasOwnProperty.call(v1, $79)) {
-          $78[$79] = v1[$79];
+        $79.currentDate = prevMonth(s.currentDate);
+        return $79;
+      });
+    }
+    ;
+    if (v instanceof Pick) {
+      return discard5(modify_3(function(s) {
+        var newAvailability = alter3(toggleAvailability)(v.value0)(s.availability);
+        var $82 = {};
+        for (var $83 in s) {
+          if ({}.hasOwnProperty.call(s, $83)) {
+            $82[$83] = s[$83];
+          }
+          ;
         }
         ;
-      }
-      ;
-      $78.availability = v.value0.availability;
-      return $78;
-    });
-  }
-  ;
-  throw new Error("Failed pattern match at Calendar (line 187, column 16 - line 195, column 50): " + [v.constructor.name]);
-};
+        $82.availability = newAvailability;
+        return $82;
+      }))(function() {
+        return raise(v.value0);
+      });
+    }
+    ;
+    if (v instanceof Receive2) {
+      return modify_3(function(v1) {
+        var $86 = {};
+        for (var $87 in v1) {
+          if ({}.hasOwnProperty.call(v1, $87)) {
+            $86[$87] = v1[$87];
+          }
+          ;
+        }
+        ;
+        $86.availability = v.value0.availability;
+        return $86;
+      });
+    }
+    ;
+    throw new Error("Failed pattern match at Calendar (line 188, column 16 - line 199, column 50): " + [v.constructor.name]);
+  };
+}();
 var week = function($copy_d) {
   var $tco_done = false;
   var $tco_result;
@@ -11016,13 +10768,13 @@ var week = function($copy_d) {
     var lastDateOfLastYear = canonicalDate(fromMaybe(year(d))(pred12(year(d))))(top12)(top2);
     var firstDayOfYear = firstDateOfMonth(adjustToMonth(d)(January.value));
     var nbrMondaysUpUntilDate = length4(filter2(function() {
-      var $94 = eq6(Monday.value);
-      return function($95) {
-        return $94(weekday($95));
+      var $105 = eq6(Monday.value);
+      return function($106) {
+        return $105(weekday($106));
       };
     }())(enumFromTo1(firstDayOfYear)(d)));
-    var $82 = nbrMondaysUpUntilDate === 0;
-    if ($82) {
+    var $90 = nbrMondaysUpUntilDate === 0;
+    if ($90) {
       $copy_d = lastDateOfLastYear;
       return;
     }
@@ -11058,8 +10810,8 @@ var dayMatrix = function(date2) {
       };
     };
     var addWeek = function(i2) {
-      var $84 = currentBaseWeek > 51;
-      if ($84) {
+      var $92 = currentBaseWeek > 51;
+      if ($92) {
         return addWeekHeader(isOutside(i2))(max6(mod4(currentBaseWeek + i2 | 0)(currentBaseWeek + 1 | 0))(i2));
       }
       ;
@@ -11083,8 +10835,8 @@ var calendar = /* @__PURE__ */ function() {
     "eval": mkEval({
       handleAction,
       handleQuery: defaultEval.handleQuery,
-      receive: function($96) {
-        return Just.create(Receive2.create($96));
+      receive: function($107) {
+        return Just.create(Receive2.create($107));
       },
       initialize: defaultEval.initialize,
       finalize: defaultEval.finalize
@@ -11159,121 +10911,29 @@ var encodeJson = function(dict) {
   return dict.encodeJson;
 };
 
-// output/Form/index.js
-var mapFlipped3 = /* @__PURE__ */ mapFlipped(functorArray);
-var type_19 = /* @__PURE__ */ type_17(isPropInputType);
-var eq7 = /* @__PURE__ */ eq(/* @__PURE__ */ eqMaybe(eqBoolean));
-var discard5 = /* @__PURE__ */ discard(discardUnit)(bindHalogenM);
-var modify_4 = /* @__PURE__ */ modify_2(monadStateHalogenM);
-var ChangeOption = /* @__PURE__ */ function() {
-  function ChangeOption2(value0) {
-    this.value0 = value0;
-  }
-  ;
-  ChangeOption2.create = function(value0) {
-    return new ChangeOption2(value0);
-  };
-  return ChangeOption2;
-}();
-var initialOptions = /* @__PURE__ */ function() {
-  return [new Just(true), new Just(false)];
-}();
-var initialState2 = function(v) {
-  return {
-    options: initialOptions,
-    picked: Nothing.value
-  };
-};
-var form2 = /* @__PURE__ */ function() {
-  var renderOption = function(op) {
-    if (op instanceof Just && op.value0) {
-      return "Available";
-    }
-    ;
-    if (op instanceof Just && !op.value0) {
-      return "Unavailable";
-    }
-    ;
-    if (op instanceof Nothing) {
-      return "";
-    }
-    ;
-    throw new Error("Failed pattern match at Form (line 44, column 21 - line 47, column 17): " + [op.constructor.name]);
-  };
-  var render3 = function(state3) {
-    return section([css("availability-form")])([section([css("options")])(mapFlipped3(state3.options)(function(option2) {
-      return label_([input([type_19(InputRadio.value), name15("radio"), checked2(eq7(state3.picked)(option2)), onChange(function(v) {
-        return new ChangeOption(option2);
-      }), css("radio__button")]), text5(renderOption(option2))]);
-    }))]);
-  };
-  var handleAction3 = function(v) {
-    return discard5(modify_4(function(v1) {
-      var $16 = {};
-      for (var $17 in v1) {
-        if ({}.hasOwnProperty.call(v1, $17)) {
-          $16[$17] = v1[$17];
-        }
-        ;
-      }
-      ;
-      $16.picked = v.value0;
-      return $16;
-    }))(function() {
-      return raise(v.value0);
-    });
-  };
-  return mkComponent({
-    initialState: initialState2,
-    render: render3,
-    "eval": mkEval({
-      handleAction: handleAction3,
-      handleQuery: defaultEval.handleQuery,
-      receive: defaultEval.receive,
-      initialize: defaultEval.initialize,
-      finalize: defaultEval.finalize
-    })
-  });
-}();
-
 // output/Scheduler/index.js
 var show3 = /* @__PURE__ */ show(showInt);
 var fromEnum5 = /* @__PURE__ */ fromEnum(boundedEnumYear);
 var fromEnum13 = /* @__PURE__ */ fromEnum(boundedEnumMonth);
 var fromEnum23 = /* @__PURE__ */ fromEnum(boundedEnumDay);
-var slot2 = /* @__PURE__ */ slot();
-var slot1 = /* @__PURE__ */ slot2({
+var slot2 = /* @__PURE__ */ slot()({
   reflectSymbol: function() {
     return "calendar";
-  }
-})(ordUnit);
-var slot22 = /* @__PURE__ */ slot2({
-  reflectSymbol: function() {
-    return "form";
   }
 })(ordUnit);
 var toUnfoldableUnordered2 = /* @__PURE__ */ toUnfoldableUnordered(unfoldableArray);
 var encodeJson2 = /* @__PURE__ */ encodeJson(encodeJsonJBoolean);
 var map25 = /* @__PURE__ */ map(functorArray);
-var modify_5 = /* @__PURE__ */ modify_2(monadStateHalogenM);
 var bind7 = /* @__PURE__ */ bind(bindHalogenM);
 var map111 = /* @__PURE__ */ map(functorHalogenM);
 var get4 = /* @__PURE__ */ get(monadStateHalogenM);
+var lookup7 = /* @__PURE__ */ lookup(ordDate);
+var modify_4 = /* @__PURE__ */ modify_2(monadStateHalogenM);
+var insert7 = /* @__PURE__ */ insert(ordDate);
 var bind15 = /* @__PURE__ */ bind(bindEffect);
 var pure14 = /* @__PURE__ */ pure(applicativeHalogenM);
 var encodeJson1 = /* @__PURE__ */ encodeJson(encodeJsonJson);
 var discard6 = /* @__PURE__ */ discard(discardUnit)(bindHalogenM);
-var alter3 = /* @__PURE__ */ alter(ordDate);
-var HandlePicked = /* @__PURE__ */ function() {
-  function HandlePicked2(value0) {
-    this.value0 = value0;
-  }
-  ;
-  HandlePicked2.create = function(value0) {
-    return new HandlePicked2(value0);
-  };
-  return HandlePicked2;
-}();
 var HandleDate = /* @__PURE__ */ function() {
   function HandleDate2(value0) {
     this.value0 = value0;
@@ -11309,10 +10969,10 @@ var showDate2 = function(d) {
   return show3(fromEnum5(year(d))) + ("/" + (show3(fromEnum13(month(d))) + ("/" + show3(fromEnum23(day(d))))));
 };
 var render2 = function(state3) {
-  return div2([css("app")])([div2([css("calendar-container")])([slot1($$Proxy.value)(unit)(calendar)({
+  return div2([css("app")])([div2([css("calendar-container")])([slot2($$Proxy.value)(unit)(calendar)({
     now: state3.datetime,
     availability: state3.availability
-  })(HandleDate.create), slot22($$Proxy.value)(unit)(form2)(unit)(HandlePicked.create)]), div2([css("buttons")])([button([onClick(function(v) {
+  })(HandleDate.create)]), div2([css("buttons")])([button([onClick(function(v) {
     return Reset.value;
   }), css("button__reset")])([text5("Reset")]), button([onClick(function(v) {
     return Export.value;
@@ -11320,9 +10980,8 @@ var render2 = function(state3) {
     return SendData.value;
   }), css("button__send")])([text5("Send")])])]);
 };
-var initialState3 = function(date2) {
+var initialState2 = function(date2) {
   return {
-    currentlyPicked: Nothing.value,
     availability: empty2,
     datetime: date2
   };
@@ -11331,12 +10990,6 @@ var handleAction2 = function(dictMonadAff) {
   var liftEffect8 = liftEffect(monadEffectHalogenM(dictMonadAff.MonadEffect0()));
   var liftAff2 = liftAff(monadAffHalogenM(dictMonadAff));
   return function(action2) {
-    var toggleAvailability = function() {
-      var $70 = fromMaybe(false);
-      return function($71) {
-        return Just.create(!$70($71));
-      };
-    }();
     var availabilityToJson = function(av) {
       var eventData = toUnfoldableUnordered2(av);
       var addEntry = function(acc) {
@@ -11359,33 +11012,38 @@ var handleAction2 = function(dictMonadAff) {
       var eventData = toUnfoldableUnordered2(av);
       return "Date,Available" + ("\n" + joinWith("\n")(map25(mkRow)(eventData)));
     };
-    if (action2 instanceof HandlePicked) {
-      return modify_5(function(v) {
-        var $54 = {};
-        for (var $55 in v) {
-          if ({}.hasOwnProperty.call(v, $55)) {
-            $54[$55] = v[$55];
+    if (action2 instanceof HandleDate) {
+      return bind7(map111(function(v) {
+        return v.availability;
+      })(get4))(function(currentAvailability) {
+        var currentStatus = fromMaybe(false)(lookup7(action2.value0)(currentAvailability));
+        return modify_4(function(s) {
+          var $51 = {};
+          for (var $52 in s) {
+            if ({}.hasOwnProperty.call(s, $52)) {
+              $51[$52] = s[$52];
+            }
+            ;
           }
           ;
-        }
-        ;
-        $54.currentlyPicked = action2.value0;
-        return $54;
+          $51.availability = insert7(action2.value0)(!currentStatus)(s.availability);
+          return $51;
+        });
       });
     }
     ;
     if (action2 instanceof Reset) {
-      return modify_5(function(v) {
-        var $58 = {};
-        for (var $59 in v) {
-          if ({}.hasOwnProperty.call(v, $59)) {
-            $58[$59] = v[$59];
+      return modify_4(function(v) {
+        var $55 = {};
+        for (var $56 in v) {
+          if ({}.hasOwnProperty.call(v, $56)) {
+            $55[$56] = v[$56];
           }
           ;
         }
         ;
-        $58.availability = empty2;
-        return $58;
+        $55.availability = empty2;
+        return $55;
       });
     }
     ;
@@ -11416,7 +11074,7 @@ var handleAction2 = function(dictMonadAff) {
               return liftEffect8(log2("Success: Data sent successfully."));
             }
             ;
-            throw new Error("Failed pattern match at Scheduler (line 101, column 5 - line 106, column 62): " + [response.constructor.name]);
+            throw new Error("Failed pattern match at Scheduler (line 93, column 5 - line 98, column 62): " + [response.constructor.name]);
           }())(function() {
             return pure14(unit);
           });
@@ -11424,35 +11082,12 @@ var handleAction2 = function(dictMonadAff) {
       });
     }
     ;
-    if (action2 instanceof HandleDate) {
-      return modify_5(function(s) {
-        if (s.currentlyPicked instanceof Just) {
-          var $65 = {};
-          for (var $66 in s) {
-            if ({}.hasOwnProperty.call(s, $66)) {
-              $65[$66] = s[$66];
-            }
-            ;
-          }
-          ;
-          $65.availability = alter3(toggleAvailability)(action2.value0)(s.availability);
-          return $65;
-        }
-        ;
-        if (s.currentlyPicked instanceof Nothing) {
-          return s;
-        }
-        ;
-        throw new Error("Failed pattern match at Scheduler (line 111, column 20 - line 113, column 18): " + [s.currentlyPicked.constructor.name]);
-      });
-    }
-    ;
-    throw new Error("Failed pattern match at Scheduler (line 83, column 23 - line 113, column 18): " + [action2.constructor.name]);
+    throw new Error("Failed pattern match at Scheduler (line 73, column 23 - line 100, column 14): " + [action2.constructor.name]);
   };
 };
 var component = /* @__PURE__ */ function() {
   return mkComponent({
-    initialState: initialState3,
+    initialState: initialState2,
     render: render2,
     "eval": mkEval({
       handleAction: handleAction2(monadAffAff),
