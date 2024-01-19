@@ -22,45 +22,57 @@
                 dependencies =
                   with purs-nix.ps-pkgs;
                   [
+                    foreign
+
                     console
                     debug
                     effect
-                    foreign
-                    halogen
-                    prelude
-                    maybe
                     aff
                     run
+
+                    prelude
+                    typelevel-prelude
+
+                    maybe
+                    either
+
+                    enums
+                    integers 
+                    tuples                    
+                    arrays
+
                     strings
                     parsing
-                    affjax-web
-                    affjax-node
-                    arrays
+                    string-parsers
+
+                    ordered-collections
+                    ordered-set
+
+                    psci-support
+
+                    js-uri
+                    uri
+
+                    datetime
+                    now
+
+                    css
                     web-events
                     web-html
                     web-dom
-                    tuples
-                    integers
+                    dom-indexed        
+
+                    affjax-web
+                    # affjax-node
+
                     argonaut
                     argonaut-core
                     argonaut-codecs
-                    ordered-collections
+                    
+                    halogen                    
                     halogen-vdom
-                    halogen-formless
-                    string-parsers
-                    css
                     halogen-css
-                    ordered-set
-                    datetime
-                    dom-indexed
-                    either
-                    enums
-                    js-uri
-                    now
-                    psci-support
-                    strings
-                    typelevel-prelude
-                    uri
+                    halogen-formless
                   ];
 
                 dir = ./.;

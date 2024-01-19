@@ -121,5 +121,16 @@ handleAction action = case action of
       mkRow ∷ Tuple Date Boolean → String
       mkRow (Tuple d available) = showDate d <> "," <> (if available then "Yes" else "No")
 
-showDate ∷ Date → String
-showDate d = show (fromEnum $ year d) <> "/" <> show (fromEnum $ month d) <> "/" <> show (fromEnum $ day d)
+
+showDate :: Date → String
+showDate date = 
+  let
+    y = show $ fromEnum $ year date
+    m = padZero $ fromEnum $ month date
+    dayValue = padZero $ fromEnum $ day date
+  in
+    y <> "/" <> m <> "/" <> dayValue
+
+-- Helper function to pad a single-digit number with a leading zero
+padZero :: Int → String
+padZero n = if n < 10 then "0" <> show n else show n
