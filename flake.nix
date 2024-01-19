@@ -22,57 +22,97 @@
                 dependencies =
                   with purs-nix.ps-pkgs;
                   [
-                    foreign
+                    # foreign
 
-                    console
-                    debug
-                    effect
+                    # console
+                    # debug
+                    # effect
+                    # aff
+                    # run
+
+                    # prelude
+                    # typelevel-prelude
+
+                    # maybe
+                    # either
+
+                    # enums
+                    # integers 
+                    # tuples                    
+                    # arrays
+
+                    # strings
+                    # parsing
+                    # string-parsers
+
+                    # ordered-collections
+                    # ordered-set
+
+                    # psci-support
+
+                    # js-uri
+                    # uri
+
+                    # datetime
+                    # now
+
+                    # css
+                    # web-events
+                    # web-html
+                    # web-dom
+                    # dom-indexed        
+
+                    # affjax-web
+                    # # affjax-node
+
+                    # argonaut
+                    # argonaut-core
+                    # argonaut-codecs
+                    
                     aff
-                    run
-
-                    prelude
-                    typelevel-prelude
-
-                    maybe
-                    either
-
-                    enums
-                    integers 
-                    tuples                    
+                    affjax
+                    affjax-web
+                    argonaut-core
                     arrays
-
-                    strings
-                    parsing
-                    string-parsers
-
-                    ordered-collections
-                    ordered-set
-
-                    psci-support
-
-                    js-uri
-                    uri
-
+                    bifunctors
+                    codec
+                    codec-argonaut
+                    console
+                    const
                     datetime
+                    dom-indexed
+                    effect
+                    either
+                    enums
+                    foldable-traversable
+                    formatters
+                    halogen
+                    halogen-formless
+                    halogen-store
+                    http-methods
+                    lists
+                    maybe
+                    newtype
                     now
-
-                    css
+                    ordered-collections
+                    parallel
+                    precise-datetime
+                    prelude
+                    profunctor
+                    profunctor-lenses
+                    remotedata
+                    routing
+                    routing-duplex
+                    safe-coerce
+                    slug
+                    strings
+                    transformers
+                    tuples
+                    typelevel-prelude
                     web-events
                     web-html
-                    web-dom
-                    dom-indexed        
-
-                    affjax-web
-                    # affjax-node
-
-                    argonaut
-                    argonaut-core
-                    argonaut-codecs
-                    
-                    halogen                    
-                    halogen-vdom
-                    halogen-css
-                    halogen-formless
+                    web-storage
+                    web-uievents
                   ];
 
                 dir = ./.;
